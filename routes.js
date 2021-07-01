@@ -7,14 +7,25 @@ const Film = require("./models/film")
 // routes go here
 
 //Update - EB
+
+const readFilm = (req, film) => {
+	if (film === undefined) {
+		film = {}
+	}
+
+	film.Title = req.body.Title;
+	film.Year = req.body.Year;
+	film.Runtime = req.body.Runtime;
+	film.Plot = req.body.Plot;
+	film.Poster = req.body.Poster;
+
+	return film
+}
+
 router.put('/films/:id', async (req, res) => {
     try {
-        const film = await Film.findById(req.params.id);
-        film.title = req.body.title
-        film.description = req.body.description
-        film.dateRelease = req.body.dateRelease
-		film.actors = req.body.actors;
-		film.reviews = req.body.reviews;
+    	let film = await Film.findById(req.params.id);
+        film = readFilm(req, film);
         film.save();
         res.send(film);
 
@@ -25,7 +36,7 @@ router.put('/films/:id', async (req, res) => {
 })
 
 //Patch Update Many - EB
-router.patch('/films/:id', async (req, res) => {
+/*router.patch('/films/:id', async (req, res) => {
     try {
         const film = await Film.findById(req.params.id);
 
@@ -41,7 +52,7 @@ router.patch('/films/:id', async (req, res) => {
         res.status(404);
         res.send({ error: "Database error Film did not updated. (Film not found)" })
     }
-})
+})*/
 
 
 // Delete - EB
@@ -59,11 +70,7 @@ router.delete('/films/:id', async (req, res) => {
 router.post("/film", async (req, res) => {
 
 	try {
-	const film = new Film({
-		title: req.body.title,
-		description: req.body.description,
-		dateRelease: req.body.dateRelease,
-	});
+	const film = new Film(readFilm(req));
 
 	await film.save();
 
@@ -74,15 +81,23 @@ router.post("/film", async (req, res) => {
 })
 
 router.get("/film/:id", async(req, res) => {
-	
 	try {
 		const film = await Film.findById(req.params.id);
-		res.send(prod);
+		res.send(film);
+	} catch {
+		res.status(404).send("No film found");
+	}
+})
+
+router.get("/film", async(req, res) => {
+	
+	try {
+		const film = await Film.find();
+		res.send(film);
 
 	} catch {
 		res.status(404).send("No film found");
 	}
-
 })
 
 
