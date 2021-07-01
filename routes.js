@@ -18,6 +18,7 @@ const readFilm = (req, film) => {
 	film.Runtime = req.body.Runtime;
 	film.Plot = req.body.Plot;
 	film.Poster = req.body.Poster;
+	film.Genre = req.body.Genre;
 
 	return film
 }
