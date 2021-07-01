@@ -22,7 +22,7 @@ const readFilm = (req, film) => {
 	return film
 }
 
-router.put('/films/:id', async (req, res) => {
+router.put('/film/:id', async (req, res) => {
     try {
     	let film = await Film.findById(req.params.id);
         film = readFilm(req, film);
@@ -56,7 +56,7 @@ router.put('/films/:id', async (req, res) => {
 
 
 // Delete - EB
-router.delete('/films/:id', async (req, res) => {
+router.delete('/film/:id', async (req, res) => {
     try {
         const film = await Film.findByIdAndRemove(req.params.id);
         res.send(film);
