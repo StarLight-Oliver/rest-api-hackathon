@@ -2,6 +2,8 @@ const express = require("express");
 const mongoose =  require("mongoose");
 const routes = require("./routes");
 
+const cors = require("cors");
+
 const port = 9456;
 
 const options = {
@@ -13,6 +15,9 @@ mongoose.connect("mongodb://localhost/films", options).then(
 	() => {
 		const app = express();
 		
+
+		app.use(cors());
+
 		app.use(express.json());
 
 		app.use("/api", routes);
@@ -23,4 +28,3 @@ mongoose.connect("mongodb://localhost/films", options).then(
 
 	}
 )
-
