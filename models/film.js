@@ -25,7 +25,15 @@ const movieSchema = new Schema({
     Poster: {
         type: String,
         required: true,
-    }
+    },
+	Genre: {
+		type: String,
+		require: true,
+	},
+	imdbID: {
+		type: String,
+		require: true,
+	}
 });
 
 module.exports = mongoose.model("Films", movieSchema);
