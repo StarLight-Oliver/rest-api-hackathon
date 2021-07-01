@@ -1,27 +1,31 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const {reviews, actors} = require("./dataSchema");
 
 // Validation of the Schema
 const movieSchema = new Schema({
-    title: {
+    Title: {
         type: String,
         required: true,
         minlength: 2
     },
-    description: {
+	Year : {
+		type: String,
+		required: true,
+	},
+	Runtime: {
+		type: String,
+		required: true,
+	},
+	Plot: {
         type: String,
         required: true,
         minlength: 2
     },
-    dateRelease: {
-        type: Date,
+    Poster: {
+        type: String,
         required: true,
-    },
-	actors: [actors],
-	reviews: [reviews]
-
+    }
 });
 
 module.exports = mongoose.model("Films", movieSchema);
