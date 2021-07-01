@@ -15,7 +15,6 @@ mongoose.connect("mongodb://localhost/films", options).then(
 	() => {
 		const app = express();
 		
-
 		app.use(cors());
 
 		app.use(express.json());
