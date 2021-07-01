@@ -19,6 +19,7 @@ const readFilm = (req, film) => {
 	film.Plot = req.body.Plot;
 	film.Poster = req.body.Poster;
 	film.Genre = req.body.Genre;
+	film.imdbID = req.body.imdbID;
 
 	return film
 }

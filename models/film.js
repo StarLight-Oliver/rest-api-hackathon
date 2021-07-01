@@ -29,6 +29,10 @@ const movieSchema = new Schema({
 	Genre: {
 		type: String,
 		require: true,
+	},
+	imdbID: {
+		type: String,
+		require: true,
 	}
 });
 
