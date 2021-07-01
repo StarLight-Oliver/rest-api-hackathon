@@ -4,7 +4,7 @@ const routes = require("./routes");
 
 const cors = require("cors");
 
-const port = 99456;
+const port = 9456;
 
 const options = {
 	useNewUrlParser: true, 
